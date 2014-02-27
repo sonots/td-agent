@@ -43,6 +43,8 @@ make %{?_smp_mflags}
 # make extplugin EXTGEM=...
 
 %install
+export QA_SKIP_BUILD_ROOT=1
+
 # cleanup first
 rm -rf $RPM_BUILD_ROOT
 # install programs
