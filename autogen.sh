@@ -38,6 +38,16 @@ download "http://rubygems.org/downloads" "cool.io-1.2.1.gem"
 download "http://rubygems.org/downloads" "http_parser.rb-0.5.1.gem"
 download "http://rubygems.org/downloads" "yajl-ruby-1.1.0.gem"
 download "http://rubygems.org/downloads" "jeweler-1.6.2.gem"
+tar jxf ruby-2.1.1.tar.bz2
+cd ruby-2.1.1
+echo 'Patching ...'
+patch -p1 < ../../socket-r45045.diff
+patch -p1 < ../../socket-r45046.diff
+patch -p1 < ../../socket-r45047.diff
+cd ..
+rm -f ruby-2.1.1.tar.bz2
+echo 'Re-archiving ...'
+tar jcf ruby-2.1.1.tar.bz2 ruby-2.1.1
 cd ..
 
 echo "#!/bin/sh

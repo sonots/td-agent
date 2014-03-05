@@ -14,13 +14,13 @@ fi
 yum install -y wget make rpm-build gcc gcc-c++ readline-devel openssl-devel libxml2-devel libxslt-devel zlib-devel automake autoconf libtool auto-buildrequires openssl-devel
 
 # setup td-agent-$version.tar.gz from fluentd.git
-rm -fR fluentd
+# rm -fR fluentd
 git clone https://github.com/fluent/fluentd.git
 cd fluentd
 git checkout $rev
 cd ..
 rm -fR $dst
-mv fluentd $dst
+cp -a fluentd $dst
 cp td-agent.conf $dst
 if [ -f redhat/td-agent.conf.custom ]; then
   cp redhat/td-agent.conf.custom $dst
@@ -30,6 +30,8 @@ cp Makefile.am $dst
 cp autogen.sh $dst
 cp configure.in $dst
 cp ./td-agent.logrotate $dst
+# locate patches
+cp redhat/*.diff $dst
 # locate pre-downloaded gems
 if [ -d plugin_gems ]; then
   mkdir -p $dst/plugins
@@ -50,8 +52,6 @@ mkdir BUILD RPMS SOURCES SPECS SRPMS
 cp ../redhat/td-agent.spec SPECS
 # locate source tarball
 mv ../$dst.tar.gz SOURCES
-# locate patches
-mv ../*.diff SOURCES
 # locate init.d script
 cp ../redhat/td-agent.init SOURCES
 # locate customized configuration file
