@@ -15,7 +15,7 @@ yum install -y wget make rpm-build gcc gcc-c++ readline-devel openssl-devel libx
 
 # setup td-agent-$version.tar.gz from fluentd.git
 rm -fR fluentd
-git clone git://github.com/fluent/fluentd.git
+git clone https://github.com/fluent/fluentd.git
 cd fluentd
 git checkout $rev
 cd ..
@@ -50,6 +50,8 @@ mkdir BUILD RPMS SOURCES SPECS SRPMS
 cp ../redhat/td-agent.spec SPECS
 # locate source tarball
 mv ../$dst.tar.gz SOURCES
+# locate patches
+mv ../*.diff SOURCES
 # locate init.d script
 cp ../redhat/td-agent.init SOURCES
 # locate customized configuration file

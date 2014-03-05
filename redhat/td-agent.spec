@@ -10,6 +10,9 @@ URL: http://treasure-data.com/
 Source: %{name}-%{version}.tar.gz
 Source1: %{name}.init
 # Source2: %{name}.conf.custom
+Patch0: socket-r45045.diff
+Patch1: socket-r45046.diff
+Patch2: socket-r45047.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-%(%{__id_u} -n)
 
 Requires: /usr/sbin/useradd /usr/sbin/groupadd
